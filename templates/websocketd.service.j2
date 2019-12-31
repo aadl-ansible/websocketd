@@ -1,0 +1,11 @@
+[Unit]
+Description=Websocketd
+
+[Service]
+Type=simple
+User={{ websocketd_user }}
+Group={{ websocketd_group }}
+{% for option in websocketd_service_options %}
+{{ option }}
+{% endfor %}
+ExecStart={{ websocketd_install_path}}/websocketd {{ websocketd_options }}

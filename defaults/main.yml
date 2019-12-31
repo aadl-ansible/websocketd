@@ -1,2 +1,9 @@
 ---
-# defaults file for aadl.websocketd
+websocketd_install_path: '/usr/local/bin'
+
+websocketd_user: 'www-data'
+websocketd_group: 'www-data'
+
+websocketd_service_options: []
+
+websocketd_options: ''
