@@ -1,30 +1,42 @@
-Role Name
+aadl.websocketd
 =========
 
-A brief description of the role goes here.
+This role installs and configures a systemd service for it.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+This role presumes a linux based server that utilizes systemd for now.
 
-Role Variables
+Default Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+```yaml
+websocketd_install_path: '/usr/local/bin'
 
-Dependencies
-------------
+websocketd_user: 'www-data'
+websocketd_group: 'www-data'
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+websocketd_service_options: []
+
+websocketd_options: ''
+```
+
+Example Evergreen Variables
+--------------
+
+```yaml
+websocketd_install_path: '/usr/local/bin'
+
+websocketd_user: 'opensrf'
+websocketd_group: 'opensrf'
+
+websocketd_service_options:
+  - 'Environment=PATH=/openils/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  - 'Environment=LD_LIBRARY_PATH=/openils/lib:/usr/local/lib:/usr/local/lib/dbd:$LD_LIBRARY_PATH'
+
+websocketd_options: '--loglevel error --maxforks 250 --port 7682 /openils/bin/osrf-websocket-stdio'
+```
 
 Example Playbook
 ----------------
@@ -33,16 +45,11 @@ Including an example of how to use your role (for instance, with variables
 passed in as parameters) is always nice for users too:
 
     - hosts: servers
+      become: yes
       roles:
-         - { role: aadl.websocketd, x: 42 }
+         - { role: aadl.websocketd }
 
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+GPLv2
