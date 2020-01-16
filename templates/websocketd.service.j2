@@ -1,5 +1,9 @@
+[Install]
+WantedBy=multi-user.target
+
 [Unit]
-Description=Websocketd
+Description=Websocketd OpenSRF Gateway
+After=network.target
 
 [Service]
 Type=simple
