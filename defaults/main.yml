@@ -1,5 +1,6 @@
 ---
 websocketd_version: '0.3.1'
+websocketd_checksum: ''
 websocketd_install_path: '/usr/local/bin'
 
 websocketd_user: 'www-data'

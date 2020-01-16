@@ -5,3 +5,4 @@
       url: "https://github.com/joewalnes/websocketd/releases/download/v{{ websocketd_version }}/websocketd-{{ websocketd_version }}-linux_amd64.zip"
       dest: "{{ websocketd_install_path }}/websocketd"
       mode: '0555'
+      checksum: "{{ websocketd_checksum }}"
