@@ -6,7 +6,9 @@ This role installs and configures a systemd service for it.
 Requirements
 ------------
 
-This role presumes a linux based server that utilizes systemd for now.
+This role presumes a linux based server.
+
+Use ansible >= 2.4.3 to get around issue (30753)[https://github.com/ansible/ansible/issues/30753]
 
 Default Role Variables
 --------------
