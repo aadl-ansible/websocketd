@@ -24,6 +24,10 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  inventory:
+    host_vars:
+      websocketd-ubuntu1804:
+        ansible_python_interpreter: /usr/bin/python3
 verifier:
   name: inspec
   lint:
