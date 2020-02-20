@@ -6,3 +6,19 @@
       dest: "{{ websocketd_install_path }}/websocketd"
       mode: '0555'
       checksum: "{{ websocketd_checksum }}"
+
+- name: Copy Systemd Service
+  template:
+    src: websocketd.service.j2
+    dest: /lib/systemd/system/websocketd.service
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_service_mgr == 'systemd'
+
+- name: Enable Systemd Service
+  systemd:
+    name: websocketd
+    enabled: yes
+    masked: no
+  when: ansible_service_mgr == 'systemd'
