@@ -1,11 +1,23 @@
 ---
 # tasks file for aadl.websocketd
-- name: Install Websocketd Binary
+- name: Download Websocketd Binary
   get_url:
-      url: "https://github.com/joewalnes/websocketd/releases/download/v{{ websocketd_version }}/websocketd-{{ websocketd_version }}-linux_amd64.zip"
-      dest: "{{ websocketd_install_path }}/websocketd"
-      mode: '0555'
-      checksum: "{{ websocketd_checksum }}"
+    url: "https://github.com/joewalnes/websocketd/releases/download/v{{ websocketd_version }}/websocketd-{{ websocketd_version }}-linux_amd64.zip"
+    dest: /tmp/websocketd.zip
+    checksum: "{{ websocketd_checksum }}"
+
+- name: Extract Websocketd binary
+  unarchive:
+    src: /tmp/websocketd.zip
+    dest: /tmp/
+    remote_src: yes
+
+- name: Install Websocketd Binary
+  copy:
+    src: /tmp/websocketd
+    dest: "{{ websocketd_install_path }}/websocketd"
+    mode: '0555'
+    remote_src: yes
 
 - name: Copy Systemd Service
   template:
