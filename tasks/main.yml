@@ -1,5 +1,10 @@
 ---
 # tasks file for aadl.websocketd
+- name: Make sure unzip is installed
+  package:
+    name: unzip
+    state: present
+
 - name: Download Websocketd Binary
   get_url:
     url: "https://github.com/joewalnes/websocketd/releases/download/v{{ websocketd_version }}/websocketd-{{ websocketd_version }}-linux_amd64.zip"
